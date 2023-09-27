@@ -7,14 +7,6 @@ import React, {
 
 type DataContextProps = {
   dataMenu: typeMenu[];
-  setDataMenu: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: string;
-        name: string;
-      }[]
-    >
-  >;
   refreshData: () => void;
   resetData: () => void;
   order: orderType[];
@@ -67,11 +59,11 @@ const dataOrderInitial: orderType[] = [
   },
 ];
 
-const DataContext = createContext<DataContextProps | string>("test");
+const DataContext = createContext<DataContextProps | undefined>(undefined);
 
 const DataProvider: React.FC<ContainerProps> = ({ children }) => {
-  const [dataMenu, setDataMenu] = useState<typeMenu[]>([]);
-  const [order, setOrder] = useState<orderType[]>([]);
+  const [dataMenu, setDataMenu] = useState<typeMenu[]>(dataMenuInitial);
+  const [order, setOrder] = useState<orderType[]>(dataOrderInitial);
 
   const refreshData = () => {
     setDataMenu(JSON.parse(localStorage.getItem("menu") || "{}"));
@@ -94,9 +86,7 @@ const DataProvider: React.FC<ContainerProps> = ({ children }) => {
     }
   }, []);
   return (
-    <DataContext.Provider
-      value={{ dataMenu, setDataMenu, refreshData, order, resetData }}
-    >
+    <DataContext.Provider value={{ dataMenu, refreshData, order, resetData }}>
       {children}
     </DataContext.Provider>
   );

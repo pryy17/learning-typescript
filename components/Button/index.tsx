@@ -3,7 +3,7 @@ import React, { ComponentProps, FC, ButtonHTMLAttributes } from "react";
 type ContainerProps = ButtonHTMLAttributes<"button"> & {
   text: string;
   typeColor: string;
-  eventClick: () => void;
+  eventClick: () => void | string;
 };
 
 const buttonColor: {

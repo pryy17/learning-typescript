@@ -26,7 +26,7 @@ const Menu: FC<ContainerProps> = () => {
     setMenu(dataMenu);
   }, [dataMenu]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (food) {
       const newData = [
@@ -47,18 +47,18 @@ const Menu: FC<ContainerProps> = () => {
     }
   };
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "makanan") {
       setFood(e.target.value);
     }
 
     if (e.target.name === "harga") {
-      setHarga(e.target.value);
+      setHarga(e.target.valueAsNumber);
     }
   };
 
   const handleDelete = (id: string) => {
-    const newMenu = dataMenu.filter((item: string) => {
+    const newMenu = dataMenu.filter((item: any) => {
       return item.id !== id;
     });
     localStorage.setItem("menu", JSON.stringify(newMenu));
@@ -95,9 +95,14 @@ const Menu: FC<ContainerProps> = () => {
             </div>
 
             {food && harga ? (
-              <Button typeColor="primary" text="Tambah" />
+              <Button eventClick={() => ""} typeColor="primary" text="Tambah" />
             ) : (
-              <Button typeColor="primary" disabled={true} text="Tambah" />
+              <Button
+                eventClick={() => ""}
+                typeColor="primary"
+                disabled={true}
+                text="Tambah"
+              />
             )}
           </form>
         </section>

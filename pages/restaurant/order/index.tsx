@@ -1,4 +1,10 @@
-import React, { ComponentProps, FC, useContext, useState } from "react";
+import React, {
+  ChangeEvent,
+  ComponentProps,
+  FC,
+  useContext,
+  useState,
+} from "react";
 import Template from "../template";
 import { kuantitas, table } from "./data";
 import { Button } from "@/components";
@@ -28,14 +34,16 @@ const Order: FC<ContainerProps> = () => {
   const [currentTable, setCurrentTable] = useState<string>("");
   const [menuOrder, setMenuOrder] = useState<string>("");
   const [jumlah, setJumlah] = useState<number | undefined>(0);
-  const { dataMenu, order, refreshData } = useContext(DataContext);
+  const dataRestaurant = useContext(DataContext);
+  if (!dataRestaurant) return undefined;
+  const { dataMenu, order, refreshData } = dataRestaurant;
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (e.target.name === "makanan") {
-      setMenuOrder(e.target.value);
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.name === "makanan") {
+      setMenuOrder(event.target.value);
     }
-    if (e.target.name === "jumlah") {
-      setJumlah(e.target.value);
+    if (event.target.name === "jumlah") {
+      setJumlah(parseInt(event.target.value));
     }
   };
 
@@ -43,8 +51,7 @@ const Order: FC<ContainerProps> = () => {
     const randomNum = Math.floor(Math.random() * 90000) + 10000;
     return randomNum.toString();
   };
-
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (currentTable && menuOrder && jumlah) {
       const newOrder: menuType = {
         id: generateRandomFiveDigitString(),
@@ -74,18 +81,19 @@ const Order: FC<ContainerProps> = () => {
       setJumlah(0);
       setMenuOrder("");
       localStorage.setItem("order", JSON.stringify(mergeOrder));
-      await refreshData();
+      refreshData();
     } else {
       alert("tidak boleh kosong");
     }
   };
+
   return (
     <div>
       <Template>
         <div className="bg-[#F1F5F9] px-3 py-3 mt-5 min-h-[18em]">
           <section>
             <div className="grid grid-cols-3 w-full">
-              {order.map((item) => (
+              {order.map((item: any) => (
                 <div
                   key={item.id}
                   onClick={() => setCurrentTable(item.meja)}
@@ -120,7 +128,7 @@ const Order: FC<ContainerProps> = () => {
             <div className="flex flex-col ml-3">
               <label>Jumlah</label>
               <select
-                onChange={(e) => handleChange(e)}
+                onChange={handleChange}
                 value={jumlah}
                 name="jumlah"
                 className="my-2 py-2 px-3 w-[10em]"
@@ -139,11 +147,16 @@ const Order: FC<ContainerProps> = () => {
               <Button
                 typeColor="primary"
                 text="Tambah"
-                eventClick={handleSubmit}
+                eventClick={() => handleSubmit()}
                 type="button"
               />
             ) : (
-              <Button typeColor="primary" text="Tambah" disabled={true} />
+              <Button
+                eventClick={() => handleSubmit()}
+                typeColor="primary"
+                text="Tambah"
+                disabled={true}
+              />
             )}
           </div>
         </div>

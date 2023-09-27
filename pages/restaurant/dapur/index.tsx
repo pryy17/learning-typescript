@@ -1,12 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { ComponentProps, FC, useContext, useEffect } from "react";
 import Template from "../template";
-import { table } from "../order/data";
 import { DataContext } from "../template/menuContext";
 
 type ContainerProps = ComponentProps<"div">;
 
 const Dapur: FC<ContainerProps> = () => {
-  const { order, refreshData } = useContext(DataContext);
+  const dataRestaurant = useContext(DataContext);
+  if (!dataRestaurant) return undefined;
+  const { order, refreshData } = dataRestaurant;
+
   useEffect(() => {
     refreshData();
   }, []);

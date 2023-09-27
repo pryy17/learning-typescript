@@ -14,7 +14,7 @@ type typeMenu = {
 const Template: FC<ContainerProps> = ({ children }) => {
   const { asPath } = useRouter();
   const [menu, setMenu] = useState<typeMenu[]>([]);
-  const { resetData, refreshData } = useContext(DataContext);
+  const { resetData, refreshData } = useContext<any>(DataContext);
 
   return (
     <div className="mt-10 w-full flex justify-center">
