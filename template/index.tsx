@@ -21,7 +21,7 @@ const Template: FC<ContainerProps> = ({ children }) => {
         <div className="my-9">
           <h1 className="font-medium text-6xl text-center">Restaurant Order</h1>
           <p className="font-light text-center text-3xl">
-            Ambsius coding chalenge
+            Ambisius coding challenge
           </p>
         </div>
         <section className="flex justify-between items-center ">
