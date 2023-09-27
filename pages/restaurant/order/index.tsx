@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import Template from "../../../template";
-import { kuantitas, table } from "./data";
+import { kuantitas } from "../../../data/data";
 import { Button } from "@/components";
 import { DataContext } from "../../../template/menuContext";
 import { type } from "os";
