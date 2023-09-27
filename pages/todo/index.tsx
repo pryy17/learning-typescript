@@ -32,11 +32,11 @@ const Todo: FC<ContainerProps> = ({ className, children, ...props }) => {
     status: false,
   });
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTask(e.target.value);
   };
 
-  const handleChangeEdit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChangeEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditTask(e.target.value);
   };
 
@@ -52,7 +52,7 @@ const Todo: FC<ContainerProps> = ({ className, children, ...props }) => {
     setIsEdit({ id, status: false });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let newTask: listTask = {
       id: Math.random(),

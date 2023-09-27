@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, {
   ComponentProps,
   FC,
@@ -16,7 +17,10 @@ const Menu: FC<ContainerProps> = () => {
   const [menu, setMenu] = useState<any>();
   const [food, setFood] = useState<string>("");
   const [harga, setHarga] = useState<number>();
-  const { dataMenu, refreshData } = useContext(DataContext);
+  const dataRestaurant = useContext(DataContext);
+  if (!dataRestaurant) return undefined;
+  const { dataMenu, refreshData } = dataRestaurant;
+
   const generateRandomFiveDigitString = (): string => {
     const randomNum = Math.floor(Math.random() * 90000) + 10000;
     return randomNum.toString();

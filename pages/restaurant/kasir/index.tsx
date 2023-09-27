@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   ComponentProps,
   FC,
@@ -11,6 +13,8 @@ import { DataContext } from "../template/menuContext";
 
 type ContainerProps = ComponentProps<"div">;
 type typeMenu = {
+  harga: number;
+  jumlah: number;
   id: string;
   name: string;
 };
@@ -44,9 +48,11 @@ const dataOrderInitial: orderType[] = [
 
 const Kasir: FC<ContainerProps> = () => {
   const [struk, setStruk] = useState<typeMenu[]>([]);
-  const { order, refreshData } = useContext(DataContext);
+  const dataRestaurant = useContext(DataContext);
   const [selectTable, setSelectTable] = useState<string>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  if (!dataRestaurant) return undefined;
+  const { order, refreshData } = dataRestaurant;
 
   const handlePrintStruk = () => {
     const newStruk = order.filter((item: any) => item.id === selectTable);
@@ -65,7 +71,7 @@ const Kasir: FC<ContainerProps> = () => {
     refreshData();
   };
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectTable(e.target.value);
   };
   return (
@@ -95,7 +101,12 @@ const Kasir: FC<ContainerProps> = () => {
                 eventClick={() => handlePrintStruk()}
               />
             ) : (
-              <Button text="Print struk" disabled={true} />
+              <Button
+                typeColor="primary"
+                eventClick={() => "bisa"}
+                text="Print struk"
+                disabled={true}
+              />
             )}
             {isOpen && (
               <Button
