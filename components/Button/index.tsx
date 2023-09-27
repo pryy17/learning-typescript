@@ -1,8 +1,9 @@
-import React, { ComponentProps, FC } from "react";
+import React, { ComponentProps, FC, ButtonHTMLAttributes } from "react";
 
-type ContainerProps = ComponentProps<"div"> & {
+type ContainerProps = ButtonHTMLAttributes<"button"> & {
   text: string;
   typeColor: string;
+  eventClick: () => void;
 };
 
 const buttonColor: {
@@ -15,18 +16,24 @@ const buttonColor: {
   danger: "bg-red-500",
 };
 
-const Button: FC<ContainerProps> = ({ className, ...props }) => {
-  const { text = "button", typeColor = "primary" } = props;
+const Button: FC<ContainerProps> = ({ className, eventClick, ...props }) => {
+  const {
+    text = "button",
+    typeColor = "primary",
+    type = "submit",
+    disabled = false,
+  } = props;
 
   return (
     <button
-      {...props}
+      onClick={eventClick}
+      disabled={disabled}
       className={`${
         typeColor === "danger" ? buttonColor.danger : buttonColor.primary
       } ${
         props?.disabled && buttonColor.disabled
       } py-3 px-7 mx-3 rounded-md text-white ${className} font-medium`}
-      type="submit"
+      type={type}
     >
       <p>{text}</p>
     </button>

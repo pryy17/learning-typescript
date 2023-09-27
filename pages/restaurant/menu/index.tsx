@@ -95,9 +95,9 @@ const Menu: FC<ContainerProps> = () => {
             </div>
 
             {food && harga ? (
-              <Button text="Tambah" />
+              <Button typeColor="primary" text="Tambah" />
             ) : (
-              <Button disabled text="Tambah" />
+              <Button typeColor="primary" disabled={true} text="Tambah" />
             )}
           </form>
         </section>

@@ -136,9 +136,14 @@ const Order: FC<ContainerProps> = () => {
           </section>
           <div className="w-fit ml-auto mt-3">
             {currentTable && menuOrder && jumlah ? (
-              <Button text="Tambah" onClick={handleSubmit} />
+              <Button
+                typeColor="primary"
+                text="Tambah"
+                eventClick={handleSubmit}
+                type="button"
+              />
             ) : (
-              <Button text="Tambah" disabled onClick={handleSubmit} />
+              <Button typeColor="primary" text="Tambah" disabled={true} />
             )}
           </div>
         </div>

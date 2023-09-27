@@ -89,15 +89,19 @@ const Kasir: FC<ContainerProps> = () => {
                 ))}
             </select>
             {selectTable ? (
-              <Button text="Print struk" onClick={handlePrintStruk} />
+              <Button
+                typeColor="primary"
+                text="Print struk"
+                eventClick={() => handlePrintStruk()}
+              />
             ) : (
-              <Button text="Print struk" disabled onClick={handlePrintStruk} />
+              <Button text="Print struk" disabled={true} />
             )}
             {isOpen && (
               <Button
                 text="Kosongkan meja"
                 className="mr-auto"
-                onClick={() => {
+                eventClick={() => {
                   resetTable();
                   setIsOpen(false);
                 }}
