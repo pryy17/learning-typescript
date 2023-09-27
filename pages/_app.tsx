@@ -1,6 +1,6 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
-import { DataProvider } from "./restaurant/template/menuContext";
+import { DataProvider } from "../template/menuContext";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

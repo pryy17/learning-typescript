@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { ComponentProps, FC, useContext, useEffect } from "react";
-import Template from "../template";
-import { DataContext } from "../template/menuContext";
+import Template from "../../../template";
+import { DataContext } from "../../../template/menuContext";
 
 type ContainerProps = ComponentProps<"div">;
 

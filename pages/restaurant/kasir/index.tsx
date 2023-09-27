@@ -7,9 +7,9 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import Template from "../template";
+import Template from "../../../template";
 import { Button } from "@/components";
-import { DataContext } from "../template/menuContext";
+import { DataContext } from "../../../template/menuContext";
 
 type ContainerProps = ComponentProps<"div">;
 type typeMenu = {

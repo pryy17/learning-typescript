@@ -6,10 +6,10 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import Template from "../template";
+import Template from "../../../template";
 import { Button } from "@/components";
 import { HiTrash } from "react-icons/hi";
-import { DataContext } from "../template/menuContext";
+import { DataContext } from "../../../template/menuContext";
 
 type ContainerProps = ComponentProps<"div">;
 
@@ -114,7 +114,8 @@ const Menu: FC<ContainerProps> = () => {
           <div>
             <div className=" px-4 grid grid-cols-12 bg-[#F1F5F9] py-4 border-b-[1px]">
               <p className="grid col-span-2">ID</p>
-              <p className="grid col-span-8">Menu</p>
+              <p className="grid col-span-6">Menu</p>
+              <p className="grid col-span-2">Harga</p>
               <p className="grid col-span-2">Hapus?</p>
             </div>
             {menu?.map((item: any) => (

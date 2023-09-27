@@ -5,10 +5,10 @@ import React, {
   useContext,
   useState,
 } from "react";
-import Template from "../template";
+import Template from "../../../template";
 import { kuantitas, table } from "./data";
 import { Button } from "@/components";
-import { DataContext } from "../template/menuContext";
+import { DataContext } from "../../../template/menuContext";
 import { type } from "os";
 
 type ContainerProps = ComponentProps<"div">;

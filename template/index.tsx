@@ -13,7 +13,6 @@ type typeMenu = {
 
 const Template: FC<ContainerProps> = ({ children }) => {
   const { asPath } = useRouter();
-  const [menu, setMenu] = useState<typeMenu[]>([]);
   const { resetData, refreshData } = useContext<any>(DataContext);
 
   return (
@@ -26,11 +25,11 @@ const Template: FC<ContainerProps> = ({ children }) => {
           </p>
         </div>
         <section className="flex justify-between items-center ">
-          <div className="grid grid-cols-4 gap-4 py-2 px-2 rounded-md bg-[#F1F5F9]">
+          <div className="flex py-2 px-2 rounded-md bg-[#F1F5F9]">
             {listMenu.map((item) => (
               <Link href={"/restaurant" + item.link} key={item.id}>
                 <div
-                  className={`cursor-pointer border-gray-300 px-5 py-1 rounded-md ${
+                  className={`cursor-pointer border-gray-300 px-5 py-2 rounded-md ${
                     asPath.includes(item.link) && "bg-white"
                   }`}
                 >
